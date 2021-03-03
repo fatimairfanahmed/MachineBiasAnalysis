@@ -7,6 +7,7 @@ public class AllStudentData
 	}
 	public static void TakeArray(ArrayList<String> array) {
 		for (int i = 0; i < array.size(); i ++) {
+			StudentData student = new StudentData(array[i]);
 			
 		}
 	}

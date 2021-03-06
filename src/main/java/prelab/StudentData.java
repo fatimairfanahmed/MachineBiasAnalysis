@@ -26,9 +26,6 @@ public class StudentData {
 		this.job = Boolean.getBoolean(row[4]);
 		this.dean = row[5];	
 	}
-	public boolean getJob() {
-		return job;
-	}
 	public String toString() {
 		return name + " " + age + " " + classYear + " " + dorm + " " + job + " " + dean;
 	}

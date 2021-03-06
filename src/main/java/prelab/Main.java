@@ -18,7 +18,8 @@ public class Main{
 		make sure you handle such errors properly */
 		// add code to enter input file name and path
 		// add code to check file exists and is readable
-		CSVReaderHeaderAware csvReader = new CSVReaderHeaderAware(new FileReader("StudentProfile2.csv"));
+		// 
+		CSVReaderHeaderAware csvReader = new CSVReaderHeaderAware(new FileReader("StudentProfile.csv"));
 		ArrayList<String[]> dataReadRows = new ArrayList<String[]>(csvReader.readAll());
 		csvReader.close();	
 		AllStudentData data = new AllStudentData();

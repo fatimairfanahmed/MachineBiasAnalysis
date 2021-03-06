@@ -17,7 +17,6 @@ public class AllStudentData
 		}
 	
 	}
-	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		String result;

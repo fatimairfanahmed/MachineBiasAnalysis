@@ -4,29 +4,32 @@ public class StudentData {
 	//contains name, age, class year, residence, have job, dean
 	private String name;
 	private int age;
-	enum ClassYear {
-		FIRST_YEAR, SOPHOMORE, JUNIOR, SENIOR
-	}
-	private ClassYear classYear;
+	private String classYear;
 	private String dorm;
 	private boolean job;
-	enum Dean {
-		ELIAS, GLANZER, TENSUAN, DENNEY, WILCOX, CUZZOLINA
-	}
-	private Dean dean;
-	public StudentData(String inputname, int inputage, StudentData.ClassYear inputclassYear, String inputdorm, StudentData.Dean inputdean) {
+	private String dean;
+	public StudentData(String inputname, int inputage, String inputclassYear, String inputdorm, boolean inputjob, 
+			String inputdean) {
 		this.name = inputname;
 		this.age = inputage;
 		this.classYear = inputclassYear;
 		this.dorm = inputdorm;
+		this.job = inputjob;
 		this.dean = inputdean;
 	}
-	public StudentData( String[] file) {
-		this.name = file[0];
-		this.age = Integer.parseInt(file[1]);
-		this.classYear = ClassYear.valueOf(file[2]);
-		this.dorm = file[3];
-		this.job = Boolean.getBoolean(file[4]);
-		this.dean = Dean.valueOf(file[5]);	
+	public StudentData(String[] row) {
+		// check that the row has 5 items and if not, bomb
+		this.name = row[0];
+		this.age = Integer.parseInt(row[1]);
+		this.classYear = row[2];
+		this.dorm = row[3];
+		this.job = Boolean.getBoolean(row[4]);
+		this.dean = row[5];	
+	}
+	public boolean getJob() {
+		return job;
+	}
+	public String toString() {
+		return name + " " + age + " " + classYear + " " + dorm + " " + job + " " + dean;
 	}
 }

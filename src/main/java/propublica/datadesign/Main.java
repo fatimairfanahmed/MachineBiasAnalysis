@@ -28,7 +28,15 @@ public class Main {
     	System.out.println(data.toString());
     }   
     
-    public static void testAdding() {
+    public static void testAdding() throws Exception {
+    	String[] row1 = new String[] {"Male", "Other", "F", 
+    			"Aggravated Assault w/Firearm", "1", "Low", "0", "", ""};
+    	String[] row2 = new String[] {"Female", "Caucasian", "M", "Battery",
+    			"1", "Low", "0", "", ""};
+    	Person firstDefendant = new Person(row1);
+    	Person secondDefendant = new Person(row2);
+    	AllPeople twoDefendantsData = new AllPeople();
     	
+    	twoDefendantsData.FinalArrayList();
     }
    }

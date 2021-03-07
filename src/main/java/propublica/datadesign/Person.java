@@ -29,6 +29,7 @@ public class Person {
 	// enum Sex to for possible races person could be
 	public enum Race {
 		AFRICAN_AMERICAN,
+		CAUCASIAN,
 		HISPANIC,
 		NATIVE_AMERICAN,
 		ASIAN,

@@ -25,7 +25,6 @@ public class Main {
     	csvReader.close();	
     	AllPeople data = new AllPeople();
     	data.FinalArrayList(dataReadRows);
-    	System.out.println(data.toString());
     }   
     
     public static void testAdding() throws Exception {
@@ -33,10 +32,11 @@ public class Main {
     			"Aggravated Assault w/Firearm", "1", "Low", "0", "", ""};
     	String[] row2 = new String[] {"Female", "Caucasian", "M", "Battery",
     			"1", "Low", "0", "", ""};
-    	Person firstDefendant = new Person(row1);
-    	Person secondDefendant = new Person(row2);
+    	ArrayList<String[]> twoRows = new ArrayList<String[]>();
+    	twoRows.add(row1);
+    	twoRows.add(row2);
     	AllPeople twoDefendantsData = new AllPeople();
-    	
-    	twoDefendantsData.FinalArrayList();
+    	twoDefendantsData.FinalArrayList(twoRows);
+    	System.out.println(twoDefendantsData.toString());
     }
    }

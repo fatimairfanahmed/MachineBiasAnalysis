@@ -96,11 +96,11 @@ public class AllPeople {
 					&& AllPeopleData.get(i).hasReoffended()) {
 				counter++;
 			}
-			if (AllPeopleData.get(i).isWhite()) {
+			else if (AllPeopleData.get(i).isWhite()) {
 				whitecounter++;
 			}
 		}
-		double percentageFalseNegative = counter/whitecounter;
+		double percentageFalseNegative = 100*counter/whitecounter;
 		return percentageFalseNegative;
 	}
 	

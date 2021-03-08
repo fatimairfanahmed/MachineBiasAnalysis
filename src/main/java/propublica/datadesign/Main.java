@@ -21,8 +21,8 @@ public class Main {
     public static void main( String[] args ) throws Exception, IOException, FileNotFoundException {
     	 // TODO: eventually set racialBiasTable to a new PropublicaDataTable with correct values.
     	
-    	AllPeople AllDefendants = new AllPeople();
     	try {
+        	AllPeople AllDefendants = new AllPeople();
         	CSVReaderHeaderAware csvReader = new CSVReaderHeaderAware(new FileReader("compas-scores.csv"));
         	ArrayList<String[]> dataReadRows = new ArrayList<String[]>(csvReader.readAll());
         	csvReader.close();	

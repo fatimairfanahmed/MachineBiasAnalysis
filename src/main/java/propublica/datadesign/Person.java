@@ -105,7 +105,7 @@ public class Person {
 	 */	
 	
 	/**
-	 * @param row: takes string array with data from row
+	 * @param row: takes string array with fields that will be in row
 	 * @throws Exception
 	 */
     public Person(String[] row) throws Exception {
@@ -241,7 +241,7 @@ public class Person {
 	 * @return true if person's risk score is high
 	 */
     public boolean isHighRisk() {
-    	if (getScoreText() == ScoreText.HIGH) {
+    	if (getScoreText() == ScoreText.HIGH || getScoreText() == ScoreText.LOW) {
     		return true;
     	} else {
     		return false;

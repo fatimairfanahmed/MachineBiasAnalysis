@@ -108,7 +108,8 @@ public class Person {
 	 * @param row: takes string array with fields that will be in row
 	 * @throws Exception
 	 */
-    public Person(String[] row) throws Exception {
+    public Person(String[] row) throws Exception, IndexOutOfBoundsException, IllegalArgumentException {
+
     		// since the constants are in uppercase, use toUpperCase() to make sure the elements of the array
     		// are recognized by the enum type
     		this.sex = Sex.valueOf(row[0].toUpperCase());
@@ -238,24 +239,25 @@ public class Person {
     }
 	/**
 	 * indicates whether or not person is high risk
-	 * @return true if person's risk score is high
+	 * @return true if person's risk score is high or medium
 	 */
     public boolean isHighRisk() {
-    	if (getScoreText() == ScoreText.HIGH || getScoreText() == ScoreText.LOW) {
+    	if (getScoreText() == ScoreText.HIGH || getScoreText() == ScoreText.MEDIUM) {
     		return true;
     	} else {
     		return false;
     	}	    	
     }
     
+    
     /**
      * overrides string method and returns fields of Person class
      * in the order they appear in the row, separated by a space
      */
     public String toString() {
-    	return sex + " " + race + " " + c_Degree + " " + c_Desc
-    			+ " " + decileScore + " " + scoreText + " " + twoYearRecid
-    			+ " " + r_Desc + " " + r_Degree;
+    	return sex + ", " + race + ", " + c_Degree + ", " + c_Desc
+    			+ ", " + decileScore + ", " + scoreText + ", " + twoYearRecid
+    			+ ", " + r_Desc + ", " + r_Degree;
     }
 }
 

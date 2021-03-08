@@ -17,7 +17,7 @@ public class AllPeople {
 		this.AllPeopleData = new ArrayList<Person>();
 	}
 	// making a method that is adding each array into the array list 
-	public void FinalArrayList(ArrayList<String[]> array) throws Exception {
+	public void FinalArrayList(ArrayList<String[]> array) throws Exception, IllegalArgumentException {
 		for (int i = 0; i < array.size(); i ++) {
 			Person person = new Person(array.get(i));
 			this.AllPeopleData.add(person);
@@ -40,6 +40,68 @@ public class AllPeople {
 		return resultString;	
 	}
 	
+	/**
+	 * 
+	 * @return percentage of defendants who were rated high and did not re-offend
+	 */
+	public double FalsePositiveWhite() {
+		double counter = 0;
+		double whitecounter = 0;
+		for(int i = 0; i < AllPeopleData.size(); i++) {
+			if (AllPeopleData.get(i).isHighRisk() && AllPeopleData.get(i).isWhite()
+					&& !AllPeopleData.get(i).hasReoffended()) {
+				counter++;
+			}
+			if (AllPeopleData.get(i).isWhite()) {
+				whitecounter++;
+			}
+		}
+		double percentageFalsePositive = counter/whitecounter;
+		return percentageFalsePositive;
+	}
 	
-
+	public double FalsePositiveBlack() {
+		double counter = 0;
+		for(int i = 0; i < AllPeopleData.size(); i++) {
+			if (AllPeopleData.get(i).isHighRisk() && AllPeopleData.get(i).isBlack()
+					&& !AllPeopleData.get(i).hasReoffended()) {
+				counter++;
+			}
+		}
+		double percentageFalsePositive = counter/(AllPeopleData.size());
+		return percentageFalsePositive;
+	}
+	
+	/**
+	 * 
+	 * @return percentage of defendants who were rated low but recidivated
+	 */
+	public double FalseNegativeBlack() {
+		double counter = 0;
+		for(int i = 0; i < AllPeopleData.size(); i++) {
+			if (AllPeopleData.get(i).isLowRisk() && AllPeopleData.get(i).isBlack()
+					&& AllPeopleData.get(i).hasReoffended()) {
+				counter++;
+			}
+		}
+		double percentageFalseNegative = counter/(AllPeopleData.size());
+		return percentageFalseNegative;
+	}
+	
+	public double FalseNegativeWhite() {
+		double counter = 0;
+		double whitecounter = 0;
+		for(int i = 0; i < AllPeopleData.size(); i++) {
+			if (AllPeopleData.get(i).isLowRisk() && AllPeopleData.get(i).isWhite()
+					&& AllPeopleData.get(i).hasReoffended()) {
+				counter++;
+			}
+			if (AllPeopleData.get(i).isWhite()) {
+				whitecounter++;
+			}
+		}
+		double percentageFalseNegative = counter/whitecounter;
+		return percentageFalseNegative;
+	}
+	
 }

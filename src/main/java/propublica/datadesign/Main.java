@@ -18,13 +18,27 @@ public class Main {
 	// this should become the "Prediction Fails Differently for Black Defendants" table
 	public static PropublicaDataTable racialBiasTable = null;
 	
-    public static void main( String[] args ) throws Exception {
+    public static void main( String[] args ) throws Exception, IOException, FileNotFoundException {
     	 // TODO: eventually set racialBiasTable to a new PropublicaDataTable with correct values.
     	CSVReaderHeaderAware csvReader = new CSVReaderHeaderAware(new FileReader("compas-scores.csv"));
     	ArrayList<String[]> dataReadRows = new ArrayList<String[]>(csvReader.readAll());
     	csvReader.close();	
-    	AllPeople data = new AllPeople();
-    	data.FinalArrayList(dataReadRows);
+    	
+    	AllPeople AllDefendants = new AllPeople();
+    	try {
+    		AllDefendants.FinalArrayList(dataReadRows);
+    		System.out.println(AllDefendants.FalseNegativeWhite());
+    	}
+    	catch (IllegalArgumentException exception) {
+            // Catch expected IllegalArgumentExceptions.
+            exception.printStackTrace();
+        }  catch (IndexOutOfBoundsException exception) {
+            // Catch expected IllegalArgumentExceptions.
+            exception.printStackTrace();
+        } catch (Exception exception) {
+            // Catch unexpected Exceptions.
+        	exception.printStackTrace();
+        }
     }   
     
     public static void testAdding() throws Exception {

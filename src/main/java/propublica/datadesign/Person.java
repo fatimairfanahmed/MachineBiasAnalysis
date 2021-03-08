@@ -1,5 +1,4 @@
 package propublica.datadesign;
-
 import propublica.datadesign.Person.C_Degree;
 import propublica.datadesign.Person.Race;
 import propublica.datadesign.Person.ScoreText;

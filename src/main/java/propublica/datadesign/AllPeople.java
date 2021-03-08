@@ -27,7 +27,7 @@ public class AllPeople {
 	/**
 	 * method that overrides toString method to convert objects in 
 	 * ArrayList to a string
-	 * 
+	 * @return string where each row is on a different line and the fields are comma-separated
 	 */
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
@@ -41,66 +41,74 @@ public class AllPeople {
 	}
 	
 	/**
-	 * 
-	 * @return percentage of defendants who were rated high and did not re-offend
+	 * @return percentage of white defendants who were rated high and did not re-offend
 	 */
 	public double FalsePositiveWhite() {
-		double counter = 0;
-		double whitecounter = 0;
-		for(int i = 0; i < AllPeopleData.size(); i++) {
-			if (AllPeopleData.get(i).isHighRisk() && AllPeopleData.get(i).isWhite()
-					&& !AllPeopleData.get(i).hasReoffended()) {
-				counter++;
-			}
-			if (AllPeopleData.get(i).isWhite()) {
-				whitecounter++;
-			}
-		}
-		double percentageFalsePositive = counter/whitecounter;
-		return percentageFalsePositive;
-	}
-	
-	public double FalsePositiveBlack() {
-		double counter = 0;
-		for(int i = 0; i < AllPeopleData.size(); i++) {
-			if (AllPeopleData.get(i).isHighRisk() && AllPeopleData.get(i).isBlack()
-					&& !AllPeopleData.get(i).hasReoffended()) {
-				counter++;
+		double falseCounter = 0;
+		double totalCounter = 0;
+		for(Person person : AllPeopleData) {
+			if (person.isWhite() && person.isHighRisk()) {
+				totalCounter++;
+				if (!person.hasReoffended()) {
+					falseCounter++;
+				}
 			}
 		}
-		double percentageFalsePositive = counter/(AllPeopleData.size());
-		return percentageFalsePositive;
-	}
-	
-	/**
-	 * 
-	 * @return percentage of defendants who were rated low but recidivated
-	 */
-	public double FalseNegativeBlack() {
-		double counter = 0;
-		for(int i = 0; i < AllPeopleData.size(); i++) {
-			if (AllPeopleData.get(i).isLowRisk() && AllPeopleData.get(i).isBlack()
-					&& AllPeopleData.get(i).hasReoffended()) {
-				counter++;
-			}
-		}
-		double percentageFalseNegative = counter/(AllPeopleData.size());
+		double percentageFalseNegative = falseCounter/totalCounter;
 		return percentageFalseNegative;
 	}
 	
-	public double FalseNegativeWhite() {
-		double counter = 0;
-		double whitecounter = 0;
-		for(int i = 0; i < AllPeopleData.size(); i++) {
-			if (AllPeopleData.get(i).isLowRisk() && AllPeopleData.get(i).isWhite()
-					&& AllPeopleData.get(i).hasReoffended()) {
-				counter++;
-			}
-			else if (AllPeopleData.get(i).isWhite()) {
-				whitecounter++;
+	/** 
+	 * @return percentage of black defendants who were rated high and did not re-offend
+	 */
+	public double FalsePositiveBlack() {
+		double falseCounter = 0;
+		double totalCounter = 0;
+		for(Person person : AllPeopleData) {
+			if (person.isBlack() && person.isHighRisk()) {
+				totalCounter++;
+				if (!person.hasReoffended()) {
+					falseCounter++;
+				}
 			}
 		}
-		double percentageFalseNegative = 100*counter/whitecounter;
+		double percentageFalseNegative = falseCounter/totalCounter;
+		return percentageFalseNegative;
+	}
+	
+	/**
+	 * @return percentage of black defendants who were rated low but recidivated
+	 */
+	public double FalseNegativeBlack() {
+		double falseCounter = 0;
+		double totalCounter = 0;
+		for(Person person : AllPeopleData) {
+			if (person.isBlack() && person.isLowRisk()) {
+				totalCounter++;
+				if (person.hasReoffended()) {
+					falseCounter++;
+				}
+			}
+		}
+		double percentageFalseNegative = falseCounter/totalCounter;
+		return percentageFalseNegative;
+	}
+	
+	/**
+	 * @return percentage of white defendants who were rated low but recidivated
+	 */
+	public double FalseNegativeWhite() {
+		double falseCounter = 0;
+		double totalCounter = 0;
+		for(Person person : AllPeopleData) {
+			if (person.isWhite() && person.isLowRisk()) {
+				totalCounter++;
+				if (person.hasReoffended()) {
+					falseCounter++;
+				}
+			}
+		}
+		double percentageFalseNegative = falseCounter/totalCounter;
 		return percentageFalseNegative;
 	}
 	

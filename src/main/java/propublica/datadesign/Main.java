@@ -20,12 +20,12 @@ public class Main {
 	
     public static void main( String[] args ) throws Exception, IOException, FileNotFoundException {
     	 // TODO: eventually set racialBiasTable to a new PropublicaDataTable with correct values.
-    	CSVReaderHeaderAware csvReader = new CSVReaderHeaderAware(new FileReader("compas-scores.csv"));
-    	ArrayList<String[]> dataReadRows = new ArrayList<String[]>(csvReader.readAll());
-    	csvReader.close();	
     	
     	AllPeople AllDefendants = new AllPeople();
     	try {
+        	CSVReaderHeaderAware csvReader = new CSVReaderHeaderAware(new FileReader("compas-scores.csv"));
+        	ArrayList<String[]> dataReadRows = new ArrayList<String[]>(csvReader.readAll());
+        	csvReader.close();	
     		AllDefendants.FinalArrayList(dataReadRows);
     		System.out.println(AllDefendants.FalseNegativeWhite());
     	}
@@ -41,6 +41,10 @@ public class Main {
         }
     }   
     
+    /**
+     * tests whether FinalArrayList works with just two string arrays instead of .csv file
+     * @throws Exception
+     */
     public static void testAdding() throws Exception {
     	String[] row1 = new String[] {"Male", "Other", "F", 
     			"Aggravated Assault w/Firearm", "1", "Low", "0", "", ""};

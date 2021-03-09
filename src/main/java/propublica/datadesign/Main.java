@@ -18,22 +18,30 @@ public class Main {
 	// this should become the "Prediction Fails Differently for Black Defendants" table
 	public static PropublicaDataTable racialBiasTable = null;
 	
-    public static void main( String[] args ) throws Exception, IOException, FileNotFoundException {
+    public static void main( String[] args ) {
     	 // TODO: eventually set racialBiasTable to a new PropublicaDataTable with correct values.
     	
     	try {
         	AllPeople AllDefendants = new AllPeople();
-        	CSVReaderHeaderAware csvReader = new CSVReaderHeaderAware(new FileReader("compas-scores2.csv"));
+        	CSVReaderHeaderAware csvReader = new CSVReaderHeaderAware(new FileReader("compas-scores.csv"));
         	ArrayList<String[]> dataReadRows = new ArrayList<String[]>(csvReader.readAll());
         	csvReader.close();	
-    		AllDefendants.FinalArrayList(dataReadRows);
-    		System.out.println(AllDefendants.FalsePositiveBlack());
+    		AllDefendants.finalArrayList(dataReadRows);
+    		racialBiasTable = new PropublicaDataTable(AllDefendants.falsePositiveWhite(), 
+    				AllDefendants.falsePositiveBlack(), AllDefendants.falseNegativeWhite(), AllDefendants.falseNegativeBlack());
+    		System.out.println(racialBiasTable.toString());
     	}
-    	catch (IllegalArgumentException exception) {
+    	catch (FileNotFoundException exception) {
+            // Catch expected FileNotFoundException.
+    		exception.printStackTrace();
+        } catch (IllegalArgumentException exception) {
             // Catch expected IllegalArgumentExceptions.
             exception.printStackTrace();
         }  catch (IndexOutOfBoundsException exception) {
-            // Catch expected IllegalArgumentExceptions.
+            // Catch expected IndexOutOfBoundsException.
+            exception.printStackTrace();
+        } catch (IOException exception) {
+            // Catch expected IOExceptions.
             exception.printStackTrace();
         } catch (Exception exception) {
             // Catch unexpected Exceptions.
@@ -54,7 +62,7 @@ public class Main {
     	twoRows.add(row1);
     	twoRows.add(row2);
     	AllPeople twoDefendantsData = new AllPeople();
-    	twoDefendantsData.FinalArrayList(twoRows);
+    	twoDefendantsData.finalArrayList(twoRows);
     	System.out.println(twoDefendantsData.toString());
     }
    }

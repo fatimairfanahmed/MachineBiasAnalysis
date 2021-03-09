@@ -72,13 +72,13 @@ public class Person {
 	 * @param inputDecileScore: int variable representing person's decile score
 	 * @param inputScoreText: constant representing person's risk score
 	 * @param inputTwoYearRecid: boolean variable that represents whether person has
-	 * (cont.) re-offended (true = yes, false = no)
-	 * @param inputR_Desc: string variable representing charge description
-	 * @param inputR_Degree: string variable representing charge degree
+	 * (cont.) recividated (true = yes, false = no)
+	 * @param inputR_Desc: string variable representing recividated charge description
+	 * @param inputR_Degree: string variable representing recividated charge degree
 	 */
 	public Person(Person.Sex inputSex, Person.Race inputRace, Person.C_Degree inputC_Degree, 
 			String inputC_Desc, int inputDecileScore, Person.ScoreText inputScoreText, 
-			boolean inputTwoYearRecid, String inputR_Desc, String inputR_Degree) {		
+			boolean inputTwoYearRecid, String inputR_Desc, String inputR_Degree) throws IllegalArgumentException {		
 		this.sex = inputSex;
 		this.race = inputRace;
 		this.c_Degree = inputC_Degree;
@@ -105,15 +105,13 @@ public class Person {
 	
 	/**
 	 * @param row: takes string array with fields that will be in row
-	 * @throws Exception
+	 * @throws Exception, Exception, IndexOutOfBoundsException, IllegalArgumentException
 	 */
     public Person(String[] row) throws Exception, IndexOutOfBoundsException, IllegalArgumentException {
 
-    		// since the constants are in uppercase, use toUpperCase() to make sure the elements of the array
-    		// are recognized by the enum type
+    		// use toUpperCase() to find value of enum constant
     		this.sex = Sex.valueOf(row[0].toUpperCase());
-    		// since the .csv file uses "African-American" but we cannot use hyphens to write constants in enum types
-    		// use replace to put an underscore in place of the hyphen
+    		// put underscore in place of hyphens and spaces
     		this.race = Race.valueOf(((row[1].replace('-', '_')).replace(' ', '_')).toUpperCase());
     		this.c_Degree = C_Degree.valueOf(row[2].toUpperCase());
     		this.c_Desc = row[3];
@@ -246,8 +244,7 @@ public class Person {
     	} else {
     		return false;
     	}	    	
-    }
-   
+    } 
     
     /**
      * overrides string method and returns fields of Person class

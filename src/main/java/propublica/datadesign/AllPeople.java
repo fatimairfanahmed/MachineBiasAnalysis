@@ -1,5 +1,7 @@
 package propublica.datadesign;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import prelab.StudentData;
@@ -7,7 +9,7 @@ import prelab.StudentData;
 /**
  * 
  * @author Silvia Alemany and Fatima Irfan
- * class representing entire data set/entire set of people. 
+ * class representing entire data set/ of defendants
  *
  */
 public class AllPeople {
@@ -16,17 +18,23 @@ public class AllPeople {
 		//initializing the first array list inside the constructor 
 		this.AllPeopleData = new ArrayList<Person>();
 	}
-	// making a method that is adding each array into the array list 
-	public void FinalArrayList(ArrayList<String[]> arrayList) throws Exception, IllegalArgumentException {	
-	
-				for (int i = 0; i < arrayList.size(); i ++) {
-					try {
-						Person person = new Person(arrayList.get(i));
-						this.AllPeopleData.add(person);
-					} catch (IllegalArgumentException exception) {
-						i++;
-					}				
-				}
+	/**
+	 * @param arrayList: ArrayList comprised of String arrays where each array represents attributes of a person object
+	 * @throws Exception
+	 * @throws IllegalArgumentException
+	 */
+	public void finalArrayList(ArrayList<String[]> arrayList) throws Exception, IllegalArgumentException, 
+	IndexOutOfBoundsException, IOException, FileNotFoundException  {	
+		for (int i = 0; i < arrayList.size(); i ++) {
+			try {
+				Person person = new Person(arrayList.get(i));
+				this.AllPeopleData.add(person);
+			} catch (IllegalArgumentException exception) {
+				continue;
+			} catch (IndexOutOfBoundsException exception) {
+				continue;
+			}
+		}
 	}
 		
 
@@ -47,9 +55,9 @@ public class AllPeople {
 	}
 	
 	/**
-	 * @return percentage of white defendants who were rated high and did not re-offend
+	 * @return percentage of white defendants who didn't re-offend that were rated high
 	 */
-	public double FalsePositiveWhite() {
+	public double falsePositiveWhite() {
 		double falseCounter = 0;
 		double totalCounter = 0;
 		for(Person person : AllPeopleData) {
@@ -65,9 +73,9 @@ public class AllPeople {
 	}
 	
 	/** 
-	 * @return percentage of black defendants who were rated high and did not re-offend
+	 * @return percentage of black defendants who didn't re-offend that were rated high
 	 */
-	public double FalsePositiveBlack() {
+	public double falsePositiveBlack() {
 		double falseCounter = 0;
 		double totalCounter = 0;
 		for(Person person : AllPeopleData) {
@@ -83,9 +91,9 @@ public class AllPeople {
 	}
 	
 	/**
-	 * @return percentage of black defendants who were rated low but recidivated
+	 * @return percentage of black defendants who recidivated that were rated low
 	 */
-	public double FalseNegativeBlack() {
+	public double falseNegativeBlack() {
 		double falseCounter = 0;
 		double totalCounter = 0;
 		for(Person person : AllPeopleData) {
@@ -102,9 +110,9 @@ public class AllPeople {
 	}
 	
 	/**
-	 * @return percentage of white defendants who were rated low but recidivated
+	 * @return percentage of black defendants who recidivated that were rated low
 	 */
-	public double FalseNegativeWhite() {
+	public double falseNegativeWhite() {
 		double falseCounter = 0;
 		double totalCounter = 0;
 		for(Person person : AllPeopleData) {

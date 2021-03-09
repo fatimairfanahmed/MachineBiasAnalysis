@@ -17,12 +17,18 @@ public class AllPeople {
 		this.AllPeopleData = new ArrayList<Person>();
 	}
 	// making a method that is adding each array into the array list 
-	public void FinalArrayList(ArrayList<String[]> array) throws Exception, IllegalArgumentException {
-		for (int i = 0; i < array.size(); i ++) {
-			Person person = new Person(array.get(i));
-			this.AllPeopleData.add(person);
-		}
+	public void FinalArrayList(ArrayList<String[]> arrayList) throws Exception, IllegalArgumentException {	
+	
+				for (int i = 0; i < arrayList.size(); i ++) {
+					try {
+						Person person = new Person(arrayList.get(i));
+						this.AllPeopleData.add(person);
+					} catch (IllegalArgumentException exception) {
+						i++;
+					}				
+				}
 	}
+		
 
 	/**
 	 * method that overrides toString method to convert objects in 
@@ -54,8 +60,8 @@ public class AllPeople {
 				}
 			}
 		}
-		double percentageFalseNegative = falseCounter/totalCounter;
-		return percentageFalseNegative;
+		double percentage = falseCounter/totalCounter;
+		return percentage;
 	}
 	
 	/** 
@@ -72,8 +78,8 @@ public class AllPeople {
 				}
 			}
 		}
-		double percentageFalseNegative = falseCounter/totalCounter;
-		return percentageFalseNegative;
+		double percentage = falseCounter/totalCounter;
+		return percentage;
 	}
 	
 	/**
@@ -83,15 +89,16 @@ public class AllPeople {
 		double falseCounter = 0;
 		double totalCounter = 0;
 		for(Person person : AllPeopleData) {
-			if (person.isBlackHasReoffended()) {
+			if (person.isBlack() && person.hasReoffended()) {
+			
 				totalCounter++;
 				if (person.isLowRisk()) {
 					falseCounter++;
 				}
 			}
 		}
-		double percentageFalseNegative = falseCounter/totalCounter;
-		return percentageFalseNegative;
+		double percentage = falseCounter/totalCounter;
+		return percentage;
 	}
 	
 	/**
@@ -108,8 +115,8 @@ public class AllPeople {
 				}
 			}
 		}
-		double percentageFalseNegative = falseCounter/totalCounter;
-		return percentageFalseNegative;
+		double percentage = falseCounter/totalCounter;
+		return percentage;
 	}
 	
 }

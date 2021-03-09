@@ -119,7 +119,7 @@ public class Person {
     		this.c_Desc = row[3];
     		this.decileScore = Integer.parseInt(row[4]);
     		this.scoreText = ScoreText.valueOf(row[5].toUpperCase());
-    		this.twoYearRecid = Boolean.getBoolean(row[6]);
+    		this.twoYearRecid = (Integer.parseInt(row[6]) == 1);
     		this.r_Desc = row[7];
     		this.r_Degree = row[8];   
     }
@@ -200,7 +200,7 @@ public class Person {
 	 */
     public boolean isWhite(){
     	
-    	if (getRace() == Person.Race.CAUCASIAN) {
+    	if (getRace().equals(Person.Race.CAUCASIAN)) {
     		return true;
     	} else {
       		return false;
@@ -212,7 +212,7 @@ public class Person {
 	 * @return true if person is Black
 	 */
     public boolean isBlack() {
-    	if (getRace() == Person.Race.AFRICAN_AMERICAN) {
+    	if (getRace().equals(Person.Race.AFRICAN_AMERICAN)) {
     		return true;
     	} else {
     		return false;
@@ -230,7 +230,7 @@ public class Person {
 	 * @return true if person's risk score is low
 	 */
     public boolean isLowRisk() {
-    	if (getScoreText() == ScoreText.LOW) {
+    	if (getScoreText().equals(Person.ScoreText.LOW)) {
     		return true;
     	} else {
     		return false;
@@ -241,14 +241,14 @@ public class Person {
 	 * @return true if person's risk score is high or medium
 	 */
     public boolean isHighRisk() {
-    	if (getScoreText() == ScoreText.HIGH || getScoreText() == ScoreText.MEDIUM) {
+    	if ((getScoreText()).equals(Person.ScoreText.HIGH) || (getScoreText()).equals(Person.ScoreText.MEDIUM)) {
     		return true;
     	} else {
     		return false;
     	}	    	
     }
+   
     
-
     /**
      * overrides string method and returns fields of Person class
      * in the order they appear in the row, separated by a space

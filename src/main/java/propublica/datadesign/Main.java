@@ -23,11 +23,11 @@ public class Main {
     	
     	try {
         	AllPeople AllDefendants = new AllPeople();
-        	CSVReaderHeaderAware csvReader = new CSVReaderHeaderAware(new FileReader("compas-scores.csv"));
+        	CSVReaderHeaderAware csvReader = new CSVReaderHeaderAware(new FileReader("compas-scores2.csv"));
         	ArrayList<String[]> dataReadRows = new ArrayList<String[]>(csvReader.readAll());
         	csvReader.close();	
     		AllDefendants.FinalArrayList(dataReadRows);
-    		System.out.println(AllDefendants.FalseNegativeWhite());
+    		System.out.println(AllDefendants.FalsePositiveBlack());
     	}
     	catch (IllegalArgumentException exception) {
             // Catch expected IllegalArgumentExceptions.

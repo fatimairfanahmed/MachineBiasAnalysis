@@ -1,16 +1,9 @@
 package propublica.datadesign;
-import propublica.datadesign.Person.C_Degree;
-import propublica.datadesign.Person.Race;
-import propublica.datadesign.Person.ScoreText;
-import propublica.datadesign.Person.Sex;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 /**
  * This class holds information about a single row in the .csv file we are using. 
- * Since a single row holds data for 1 person, the name of the class is Person.
+ * Since a single row holds data for 1 person/defendant, the name of the class is Person.
  * @authors: Fatima Irfan, Silvia Alemany
- * @version: March 2, 2021
+ * @version: March 9, 2021
  */
 public class Person {
     /**
@@ -36,14 +29,14 @@ public class Person {
 	}
 	// constant race representing person's race
 	private Race race;
-	// enum C_Degree to represent c_charge_degree types
+	// enum C_Degree to represent original charge degree types
 	public enum C_Degree {
 		M,
 		F
 	}
-	// constant c_Degree representing person's charge degree
+	// constant c_Degree representing person's original charge degree
 	private C_Degree c_Degree;
-	// string variable to represent c_charge_description
+	// string variable to represent original charge description
 	private String c_Desc;
 	// integer variable to represent person's decile score
 	private int decileScore;
@@ -56,11 +49,11 @@ public class Person {
 	// constant scoreText to represent person's score 
 	private ScoreText scoreText;
 	// boolean variable that represents whether person has
-	// (cont.) re-offended (true = yes, false = no)
+	// (cont.) recidivated (true = yes, false = no)
 	private boolean twoYearRecid;
-	// string variable representing r_charge_description
+	// string variable representing recidivated charge description
 	private String r_Desc;
-	// string variable representing r_charge_degree
+	// string variable representing recidivated charge degree
 	private String r_Degree;
 	
     // constructors
@@ -72,13 +65,15 @@ public class Person {
 	 * @param inputDecileScore: int variable representing person's decile score
 	 * @param inputScoreText: constant representing person's risk score
 	 * @param inputTwoYearRecid: boolean variable that represents whether person has
-	 * (cont.) recividated (true = yes, false = no)
-	 * @param inputR_Desc: string variable representing recividated charge description
-	 * @param inputR_Degree: string variable representing recividated charge degree
+	 * (cont.) recidivated (true = yes, false = no)
+	 * @param inputR_Desc: string variable representing recidivated charge description
+	 * @param inputR_Degree: string variable representing recidivated charge degree
+	 * @throws Exception, IllegalArgumentException
 	 */
 	public Person(Person.Sex inputSex, Person.Race inputRace, Person.C_Degree inputC_Degree, 
-			String inputC_Desc, int inputDecileScore, Person.ScoreText inputScoreText, 
-			boolean inputTwoYearRecid, String inputR_Desc, String inputR_Degree) throws IllegalArgumentException {		
+				String inputC_Desc, int inputDecileScore, Person.ScoreText inputScoreText, 
+				boolean inputTwoYearRecid, String inputR_Desc, String inputR_Degree) 
+				throws Exception, IllegalArgumentException {		
 		this.sex = inputSex;
 		this.race = inputRace;
 		this.c_Degree = inputC_Degree;
@@ -89,27 +84,13 @@ public class Person {
 		this.r_Desc = inputR_Desc;
 		this.r_Degree = inputR_Degree; 		
 	}	
-	/**
-	 *  ANSWERS to 2.2.1:
-	 * in order for the field to be valid, it must be a string array with 9 elements
-	 * the elements of the array must be ordered the same way as they are in the constructor
-	 * the valid values for sex are "male" and "female"
-	 * the valid values for race  "african_american", "african-american", "caucasian", "hispanic", and "other"
-	 * the valid values for c_Degree are "m" and "f"
-	 * the valid values for scoreText are "low", "medium" and "high"
-	 * for the enum types above, capitalization should not matter because we used toUpperCase()
-	 * the valid values for decileScore are any integer within quotations
-	 * the valid values for twoYearRecid are "0" and "1"
-	 * c_Desc, r_Desc and r_Degree should be able to take any string
-	 */	
 	
 	/**
-	 * @param row: takes string array with fields that will be in row
-	 * @throws Exception, Exception, IndexOutOfBoundsException, IllegalArgumentException
+	 * @param row: takes string array with fields that will be in row, in the same order as previous constructor
+	 * @throws Exception, IndexOutOfBoundsException, IllegalArgumentException
 	 */
     public Person(String[] row) throws Exception, IndexOutOfBoundsException, IllegalArgumentException {
-
-    		// use toUpperCase() to find value of enum constant
+    		// use .toUpperCase() to find appropriate enum constant for field
     		this.sex = Sex.valueOf(row[0].toUpperCase());
     		// put underscore in place of hyphens and spaces
     		this.race = Race.valueOf(((row[1].replace('-', '_')).replace(' ', '_')).toUpperCase());
@@ -133,7 +114,7 @@ public class Person {
 	public Race getRace() {
 		return race;
 	}
-    /** @return c_charge_degree
+    /** @return original charge degree
      */
 	public C_Degree getC_Degree() {
 		return c_Degree;
@@ -143,7 +124,7 @@ public class Person {
 	public ScoreText getScoreText() {
 		return scoreText;
 	}
-    /** @return c_charge_desc
+    /** @return original charge description
      */
 	public String getC_Desc() {
 		return  c_Desc;
@@ -153,17 +134,17 @@ public class Person {
 	public int getDecileScore() {
 		return  decileScore;
 	}
-    /** @return twoyearrecid 
+    /** @return whether or no person recidivated 
      */
 	public boolean getTwoYearRecid() {
 		return  twoYearRecid;
 	}
-    /** @return r_charge_desc
+    /** @return recidivated charge description
      */
 	public String getR_Desc() {
 		return  r_Desc;
 	}
-    /** @return r_charge_degree
+    /** @return recidivated charge degree
      */
 	public String getR_Degree() {
 		return  r_Degree;
@@ -247,13 +228,36 @@ public class Person {
     } 
     
     /**
-     * overrides string method and returns fields of Person class
-     * in the order they appear in the row, separated by a space
+     * overrides toString method
+     * @return attributes of Person object in the order they appear in the row, separated by a space
      */
     public String toString() {
     	return sex + ", " + race + ", " + c_Degree + ", " + c_Desc
     			+ ", " + decileScore + ", " + scoreText + ", " + twoYearRecid
     			+ ", " + r_Desc + ", " + r_Degree;
+    }
+    
+	/**
+	 * indicates whether or not person has recidivated
+	 * @return true if person has recidivated in the past 2 years,
+	 * (cont.) except for if the crime is considered minor and common
+	 * @return false if person hasn't re-offended, or if person re-offended with a crime minor and common enough 
+	 * (cont.) that we did not consider the offense "recidivism" 
+	 */
+    public boolean newHasReoffended() {
+    	if (getTwoYearRecid()) {
+    		if ((getR_Desc()).contains("Driving License Suspended") ||
+    			(getR_Desc()).contains("Possess Cannabis/20 Grams Or Less") ||
+    			(getR_Desc()).contains("Resist/Obstruct W/O Violence") ||
+    			(getR_Desc()).contains("Operating W/O Valid License") || 
+				(getR_Desc()).contains("Petit Theft")) {
+    			return false;
+    		} else {
+    			return true;
+    		}
+    	} else {
+    		return false;
+    	}
     }
 }
 

@@ -1,6 +1,6 @@
 ## CS 106 Lab 2: Data Structure Design
 
-Name:
+Name: Silvia Alemany and Fatima Irfan
 
 ---
 
@@ -30,6 +30,23 @@ assignments in the future)
 
 1. Approximately how many hours did you take to complete this lab? (provide your answer as a single integer on the line below)
 
-2. How difficult did you find this lab? (1-5, with 5 being very difficult and 1 being very easy)
+8
 
-3. Describe the biggest challenge you faced in this lab:
+2. How difficult did you find this lab? (1-5, with 5 being very difficult and 1 being very easy)
+5
+
+3. Describe the biggest challenge you faced in this lab: Part 4.1 was difficult to do correctly.
+
+
+###Analysis- part 5
+We were originally going to find common keywords for less serious re-offenses to find descriptions that  had these keywords, 
+but we realized that a lot of the language used to describe minor re-offenses is also used to describe serious re-offenses.
+So instead, we used terminal to show only the unique entries for r_charge_desc in the.csv file, and then we sorted to see the most
+common unique entries. From the ten most common entries, we found 5 descriptions that we didn't think counted as recidivism because 
+they were relatively minor. These were "Driving License Suspended", "Possess Cannabis/20 Grams Or Less", "Resist/Obstruct W/O Violence",
+"Operating W/O Valid License", and "Petit Theft". We then wrote a new hasReoffended method called newHasReoffended in the Person class,
+and used this method to create new methods that found frequency of false positives/negatives in AllPeople.
+Since each of these 5 descriptions we chose show up 100-300 times in the .csv, we thought that the difference in the original analysis
+and this one would show a general trend in how false positives and negatives change when we consider the weight of the re-offense.
+Our results showed that for both White and Black Defendants, there was a less than 1% change in the rate of false negatives,
+but the rate of false positives rose to 47% for white defendants and over 50% (52.6%) for Black defendants.

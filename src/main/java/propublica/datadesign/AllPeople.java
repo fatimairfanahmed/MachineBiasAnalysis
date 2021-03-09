@@ -47,9 +47,9 @@ public class AllPeople {
 		double falseCounter = 0;
 		double totalCounter = 0;
 		for(Person person : AllPeopleData) {
-			if (person.isWhite() && person.isHighRisk()) {
+			if (person.isWhite() && !person.hasReoffended()) {
 				totalCounter++;
-				if (!person.hasReoffended()) {
+				if (person.isHighRisk()) {
 					falseCounter++;
 				}
 			}
@@ -65,9 +65,9 @@ public class AllPeople {
 		double falseCounter = 0;
 		double totalCounter = 0;
 		for(Person person : AllPeopleData) {
-			if (person.isBlack() && person.isHighRisk()) {
+			if (person.isBlack() && !person.hasReoffended()) {
 				totalCounter++;
-				if (!person.hasReoffended()) {
+				if (person.isHighRisk()) {
 					falseCounter++;
 				}
 			}
@@ -82,10 +82,10 @@ public class AllPeople {
 	public double FalseNegativeBlack() {
 		double falseCounter = 0;
 		double totalCounter = 0;
-		for( int i = 0; i < AllPeopleData.size(); i++) {
-			if ((AllPeopleData.get(i)).isBlack() && AllPeopleData.get(i).isLowRisk()) {
+		for(Person person : AllPeopleData) {
+			if (person.isBlackHasReoffended()) {
 				totalCounter++;
-				if ((AllPeopleData.get(i)).hasReoffended()) {
+				if (person.isLowRisk()) {
 					falseCounter++;
 				}
 			}

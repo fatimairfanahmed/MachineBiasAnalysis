@@ -50,8 +50,7 @@ public class Main {
     }   
     
     /**
-     * tests whether FinalArrayList works with just two string arrays instead of .csv file
-     * @throws Exception
+     * tests whether finalArrayList works with just two string arrays instead of full .csv file
      */
     public static void testAdding() {
     	try {

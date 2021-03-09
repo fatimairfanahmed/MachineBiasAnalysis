@@ -238,7 +238,7 @@ public class Person {
     }
     
 	/**
-	 * indicates whether or not person has recidivated
+	 * this is a different version of the "hasReoffended" method for analysis in part 5
 	 * @return true if person has recidivated in the past 2 years,
 	 * (cont.) except for if the crime is considered minor and common
 	 * @return false if person hasn't re-offended, or if person re-offended with a crime minor and common enough 

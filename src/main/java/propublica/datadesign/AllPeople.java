@@ -17,10 +17,9 @@ public class AllPeople {
 		this.AllPeopleData = new ArrayList<Person>();
 	}
 	/**
-	 * @param arrayList: ArrayList comprised of String arrays where each array represents attributes of an 
-	 * (cont.) object from the person class
-	 * @throws Exception
-	 * @throws IllegalArgumentException, IOException, FileNotFoundException
+	 * @param arrayList: ArrayList comprised of String arrays where each array contains the attributes of an 
+	 * (cont.) object from the Person class
+	 * @throws Exception, IllegalArgumentException, IOException, FileNotFoundException
 	 */
 	public void finalArrayList(ArrayList<String[]> arrayList) throws Exception, IllegalArgumentException,
 		IOException, FileNotFoundException  {	
@@ -29,8 +28,10 @@ public class AllPeople {
 				Person person = new Person(arrayList.get(i));
 				this.AllPeopleData.add(person);
 			} catch (IllegalArgumentException exception) {
+				// catches IllegalArgumentException exceptions thrown from Person class and skips row in .csv file
 				continue;
 			} catch (IndexOutOfBoundsException exception) {
+				// catches IndexOutOfBoundsException exceptions thrown from Person class and skips row in .csv file
 				continue;
 			}
 		}
@@ -128,9 +129,7 @@ public class AllPeople {
 		return percentage;
 	}
 
-	/**
-	 * methods for additional analysis in part 5
-	 */
+	// BELOW: methods for additional analysis in part 5
 	/**
 	 * @return percentage of white defendants who didn't re-offend (w/ updated definition of recidivism) 
 	 * (cont.) that were rated high

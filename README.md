@@ -49,5 +49,5 @@ and used this method to create new methods that found frequency of false positiv
 Since each of these 5 descriptions we chose show up 100-300 times in the .csv, we thought that the difference in the original analysis
 and this one would show a general trend in how false positives and negatives change when we consider the weight of the re-offense.
 Our results showed that for both White and Black Defendants, there was a less than 1% change in the rate of false negatives,
-but the rate of false positives rose to 47% for white defendants and to over 50% (52.6%) for Black defendants. This shows that the false positive
-rates for both Black and White defendants is even higher when we stop counting common, less serious re-offenses as recidivism.
+but the rate of false positives rose to 27.3% for white defendants and to over 50% (52.6%) for Black defendants. This shows that the false positive
+rates for both Black and White defendants is even higher when we stop counting common and less serious re-offenses as recidivism.

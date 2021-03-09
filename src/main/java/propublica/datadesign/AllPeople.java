@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
 /**
  * AllPeople class representing entire set of defendant data (data from entire .csv file)
  * @authors Silvia Alemany and Fatima Irfan

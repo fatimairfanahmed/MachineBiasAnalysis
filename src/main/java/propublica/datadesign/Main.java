@@ -30,7 +30,7 @@ public class Main {
     				AllDefendants.falsePositiveBlack(), AllDefendants.falseNegativeWhite(), 
     				AllDefendants.falseNegativeBlack());
     		System.out.println(racialBiasTable.toString());
-    		newRacialBiasTable = new PropublicaDataTable(AllDefendants.newFalseNWhite(), 
+    		newRacialBiasTable = new PropublicaDataTable(AllDefendants.newFalsePWhite(), 
     				AllDefendants.newFalsePBlack(), AllDefendants.newFalseNWhite(), 
     				AllDefendants.newFalseNBlack());
     		System.out.println(newRacialBiasTable.toString());
@@ -50,7 +50,7 @@ public class Main {
     }   
     
     /**
-     * tests whether finalArrayList works with just two string arrays instead of full .csv file
+     * tests whether finalArrayList works with just two string arrays (rows) instead of full .csv file
      */
     public static void testAdding() {
     	try {

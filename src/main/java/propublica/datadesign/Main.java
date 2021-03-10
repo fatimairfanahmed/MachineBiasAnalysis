@@ -1,6 +1,4 @@
 package propublica.datadesign;
-//The tasks of this lab, build upon the tasks that you have completed in lab1. Please make reuse of the code that you have already written in lab1.
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,32 +6,47 @@ import java.util.ArrayList;
 import com.opencsv.CSVReaderHeaderAware;
 
 /**
- * Main class  to call/test methods from Person and AllPeople classes.
+ * This program calls/tests methods from the Person and AllPeople classes in lab 2. 
+ * It also replicates the analysis ProPublica shows in “Prediction Fails Differently for Black Defendants” 
+ * using these two classes and PropublicaDataTable.
+ * 
  * @authors Silvia Alemany and Fatima Irfan
  * @version March 9, 2021
  */
+
 public class Main {
 	// this should become the "Prediction Fails Differently for Black Defendants" table
 	public static PropublicaDataTable racialBiasTable = null;
-	// newRacialBiasTable for analysis in part 5
-	public static PropublicaDataTable newRacialBiasTable = null;
+	// newRacialBiasTable for additional analysis in part 5. Feel free to uncomment this and run it
+	// public static PropublicaDataTable newRacialBiasTable = null;
 	
     public static void main( String[] args ) {
-    	 // TODO: eventually set racialBiasTable to a new PropublicaDataTable with correct values.
+    	 /**
+    	  * Uses openCSV to read compas-scores and store in a String ArrayList dataReadRows
+    	  * Populate data structure using dataReadRows
+    	  * Sets racialBiasTable to a new PropublicaDataTable with correct values
+    	  * Prints racialBiasTable
+    	  */
     	try {
-        	AllPeople AllDefendants = new AllPeople();
+    		// This calls the tesAdding() method defined below. Feel free to uncomment this and run it
+    		// testAdding();
+    		AllPeople allDefendants = new AllPeople();
         	CSVReaderHeaderAware csvReader = new CSVReaderHeaderAware(new FileReader("compas-scores.csv"));
         	ArrayList<String[]> dataReadRows = new ArrayList<String[]>(csvReader.readAll());
         	csvReader.close();	
-    		AllDefendants.finalArrayList(dataReadRows);
-    		racialBiasTable = new PropublicaDataTable(AllDefendants.falsePositiveWhite(), 
-    				AllDefendants.falsePositiveBlack(), AllDefendants.falseNegativeWhite(), 
-    				AllDefendants.falseNegativeBlack());
+    		allDefendants.finalArrayList(dataReadRows);
+    		racialBiasTable = new PropublicaDataTable(allDefendants.falsePositiveWhite(), 
+    												  allDefendants.falsePositiveBlack(), 
+    												  allDefendants.falseNegativeWhite(), 
+    												  allDefendants.falseNegativeBlack());
     		System.out.println(racialBiasTable.toString());
-    		newRacialBiasTable = new PropublicaDataTable(AllDefendants.newFalsePWhite(), 
-    				AllDefendants.newFalsePBlack(), AllDefendants.newFalseNWhite(), 
-    				AllDefendants.newFalseNBlack());
-    		System.out.println(newRacialBiasTable.toString());
+    		// Below is the code that sets and prints the table with the values from our custom analysis
+    		// Feel free to uncomment this and run it
+    		// newRacialBiasTable = new PropublicaDataTable(allDefendants.newFalsePWhite(), 
+    													 // allDefendants.newFalsePBlack(),
+    													 // allDefendants.newFalseNWhite(), 
+    													 // allDefendants.newFalseNBlack());
+    		// System.out.println(newRacialBiasTable.toString());
     	} catch (FileNotFoundException exception) {
             // Catch expected FileNotFoundException.
     		exception.printStackTrace();
@@ -50,14 +63,14 @@ public class Main {
     }   
     
     /**
-     * tests whether finalArrayList works with just two string arrays (rows) instead of full .csv file
+     * Tests whether finalArrayList works with just two string arrays (rows) instead of full .csv file
      */
     public static void testAdding() {
     	try {
         	String[] row1 = new String[] {"Male", "Other", "F", 
-        			"Aggravated Assault w/Firearm", "1", "Low", "0", "", ""};
+        								  "Aggravated Assault w/Firearm", "1", "Low", "0", "", ""};
         	String[] row2 = new String[] {"Female", "Caucasian", "M", "Battery",
-        			"1", "Low", "0", "", ""};
+        								  "1", "Low", "0", "", ""};
         	ArrayList<String[]> twoRows = new ArrayList<String[]>();
         	twoRows.add(row1);
         	twoRows.add(row2);

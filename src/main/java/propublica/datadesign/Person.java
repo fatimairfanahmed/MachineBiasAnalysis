@@ -50,9 +50,9 @@ public class Person {
 	private ScoreText scoreText;
 	// boolean variable that represents whether person has recidivated (true = yes, false = no)
 	private boolean twoYearRecid;
-	// string variable representing recidivated charge description
+	// string variable representing charge description for re-offense
 	private String r_Desc;
-	// string variable representing recidivated charge degree
+	// string variable representing charge degree for re-offense
 	private String r_Degree;
 	
 	/**
@@ -118,78 +118,95 @@ public class Person {
     		this.r_Degree = row[8];   
     }
       
-    // getter methods for each field
-    /** @return sex
+    // Getters
+    /** 
+     * getter for sex
+     * @return sex
      */
     public Sex getSex() {
 		return sex;
 	}
-    /** @return race
+    /**
+     * getter for race
+     *  @return race
      */
 	public Race getRace() {
 		return race;
 	}
-    /** @return original charge degree
+    /**
+     * getter for c_Degree
+     *  @return original charge degree
      */
 	public C_Degree getC_Degree() {
 		return c_Degree;
 	}
-    /** @return risk score
+    /**
+     * getter for scoreText
+     *  @return risk score
      */
 	public ScoreText getScoreText() {
 		return scoreText;
 	}
-    /** @return original charge description
+    /**
+     * getter for c_Desc
+     *  @return original charge description
      */
 	public String getC_Desc() {
 		return  c_Desc;
 	}
-    /** @return decile score
+    /**
+     * getter for decileScore
+     *  @return decile score
      */
 	public int getDecileScore() {
 		return  decileScore;
 	}
-    /** @return whether or no person recidivated 
+    /**
+     * getter for twoYearRecid
+     *  @return whether or not person recidivated 
      */
 	public boolean getTwoYearRecid() {
 		return  twoYearRecid;
 	}
-    /** @return recidivated charge description
+    /** 
+     * getter for r_Desc
+     * @return charge description of re-offense
      */
 	public String getR_Desc() {
 		return  r_Desc;
 	}
-    /** @return recidivated charge degree
+    /** 
+     * getter for r_Degree
+     * @return charge degree of re-offense
      */
 	public String getR_Degree() {
 		return  r_Degree;
 	}
 	
-	// setters
+	// Getters
 	/**
-	 * assigns new value to twoYearRecid using parameter
-	 * note that we only made setter for variables that we thought we would possibly want to change
+	 * Sets parameter as new value of twoYearRecid
 	 * @param inputTwoYearRecid new value for twoYearRecid
 	 */
 	public void setTwoYearRecid(boolean inputTwoYearRecid) {
 		twoYearRecid = inputTwoYearRecid;
 	}
 	/**
-	 * assigns new value to c_Desc using parameter
+	 * Sets c_Desc to new value using parameter
 	 * @param inputC_Desc new value for c_Desc
 	 */
 	public void setC_Desc(String inputC_Desc) {
 		c_Desc = inputC_Desc;
 	}	
 	/**
-	 * assigns new value to r_Desc using parameter
+	 * Sets r_Desc to new value using parameter
 	 * @param inputR_Desc new value for r_Desc
 	 */
 	public void setR_Desc(String inputR_Desc) {
 		r_Desc = inputR_Desc;
 	}
 	/**
-	 * assigns new value to r_Degree using parameter
+	 * Sets r_Degree to new value using parameter
 	* @param inputR_Degree new value for r_Degree
 	*/
 	public void setR_Degree(String inputR_Degree) {

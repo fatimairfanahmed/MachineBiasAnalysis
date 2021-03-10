@@ -118,7 +118,7 @@ public class Person {
     		this.r_Degree = row[8];   
     }
       
-    // getters
+    // getter methods for each field
     /** @return sex
      */
     public Sex getSex() {
@@ -167,22 +167,31 @@ public class Person {
 	
 	// setters
 	/**
-	 * assigns new value to instance variable using parameter
+	 * assigns new value to twoYearRecid using parameter
 	 * note that we only made setter for variables that we thought we would possibly want to change
-	 * @param inputTwoYearRecid new value for twoYearRecid, 
-	 * @param inputC_Desc new value for c_Desc
-	 * @param inputR_Desc new value for r_Desc, and
-	 * @param inputR_Degree new value for r_Degree, respectively.
+	 * @param inputTwoYearRecid new value for twoYearRecid
 	 */
 	public void setTwoYearRecid(boolean inputTwoYearRecid) {
 		twoYearRecid = inputTwoYearRecid;
 	}
+	/**
+	 * assigns new value to c_Desc using parameter
+	 * @param inputC_Desc new value for c_Desc
+	 */
 	public void setC_Desc(String inputC_Desc) {
 		c_Desc = inputC_Desc;
-	}
+	}	
+	/**
+	 * assigns new value to r_Desc using parameter
+	 * @param inputR_Desc new value for r_Desc
+	 */
 	public void setR_Desc(String inputR_Desc) {
 		r_Desc = inputR_Desc;
 	}
+	/**
+	 * assigns new value to r_Degree using parameter
+	* @param inputR_Degree new value for r_Degree
+	*/
 	public void setR_Degree(String inputR_Degree) {
 		r_Degree = inputR_Degree;
 	}

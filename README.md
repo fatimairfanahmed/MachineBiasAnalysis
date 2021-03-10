@@ -40,7 +40,7 @@ assignments in the future)
 ###Part 3.2
 1. None of our validation methods indicated that our precondition assumptions weren't met.
 
-2. A person that would not pass the preconditions would be someone who has "White" in the Race column. Another example
+2. A person that would not pass the preconditions would be someone who is defined as "White" in the Race column. Another example
 is someone whose decile score is not an integer, like 3.3.
 
 ###Analysis- part 5

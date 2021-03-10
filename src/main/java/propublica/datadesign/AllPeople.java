@@ -12,11 +12,15 @@ import java.util.ArrayList;
  */
 public class AllPeople {
 	private ArrayList<Person> allPeopleData;
+	/**
+	 * Constructor
+	 * Creates a Person ArrayList called allPeopleData
+	 */
 	public AllPeople() {
-		//initializing the Person ArrayList inside the constructor 
 		this.allPeopleData = new ArrayList<Person>();
 	}
 	/**
+	 * Iterates through String ArrayList and assigns each row to a new Person object that is stored in allPeopleData
 	 * @param arrayList: ArrayList comprised of String arrays where each array contains the attributes of an 
 	 *  object from the Person class
 	 * @throws Exception, IllegalArgumentException, IOException, FileNotFoundException
@@ -60,7 +64,7 @@ public class AllPeople {
 	 * Returns the % of false positives among white defendants as a decimal.
 	 * @return percentage of white defendants who didn't re-offend that were rated high/medium
 	 */
-	public double falsePositiveWhite() {
+	public double whiteHighNoReoffendRate() {
 		double falseCounter = 0;
 		double totalCounter = 0;
 		for(Person person : allPeopleData) {
@@ -79,7 +83,7 @@ public class AllPeople {
 	 * Returns the % of false positives among Black defendants as a decimal.
 	 * @return percentage of black defendants who didn't re-offend that were rated high/medium
 	 */
-	public double falsePositiveBlack() {
+	public double blackHighNoReoffendRate() {
 		double falseCounter = 0;
 		double totalCounter = 0;
 		for(Person person : allPeopleData) {
@@ -98,7 +102,7 @@ public class AllPeople {
 	 * Returns the % of false negatives among Black defendants as a decimal.
 	 * @return percentage of black defendants who recidivated that were rated low
 	 */
-	public double falseNegativeBlack() {
+	public double blackLowReoffendRate() {
 		double falseCounter = 0;
 		double totalCounter = 0;
 		for(Person person : allPeopleData) {
@@ -117,7 +121,7 @@ public class AllPeople {
 	 * Returns the % of false negatives among white defendants as a decimal.
 	 * @return percentage of black defendants who recidivated that were rated low
 	 */
-	public double falseNegativeWhite() {
+	public double whiteLowReoffendRate() {
 		double falseCounter = 0;
 		double totalCounter = 0;
 		for(Person person : allPeopleData) {
@@ -138,7 +142,7 @@ public class AllPeople {
 	 * @return percentage of white defendants who didn't re-offend (w/ updated definition of recidivism) 
 	 * that were rated high/medium
 	 */
-	public double newFalsePWhite() {
+	public double newWhiteHighNoReoffend() {
 		double falseCounter = 0;
 		double totalCounter = 0;
 		for(Person person : allPeopleData) {
@@ -158,7 +162,7 @@ public class AllPeople {
 	 * @return percentage of black defendants who didn't re-offend (w/ updated definition of recidivism) 
 	 * that were rated high/medium
 	 */
-	public double newFalsePBlack() {
+	public double newBlackHighNoReoffend() {
 		double falseCounter = 0;
 		double totalCounter = 0;
 		for(Person person : allPeopleData) {
@@ -178,7 +182,7 @@ public class AllPeople {
 	 * @return percentage of black defendants who recidivated (w/ updated definition of recidivism) 
 	 * that were rated low
 	 */
-	public double newFalseNBlack() {
+	public double newBlackLowReoffend() {
 		double falseCounter = 0;
 		double totalCounter = 0;
 		for(Person person : allPeopleData) {
@@ -198,7 +202,7 @@ public class AllPeople {
 	 * @return percentage of black defendants who recidivated (w/ updated definition of recidivism)
 	 * that were rated low
 	 */
-	public double newFalseNWhite() {
+	public double newWhiteLowReoffend() {
 		double falseCounter = 0;
 		double totalCounter = 0;
 		for(Person person : allPeopleData) {

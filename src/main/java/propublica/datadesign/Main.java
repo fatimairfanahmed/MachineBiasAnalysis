@@ -18,7 +18,7 @@ public class Main {
 	// this should become the "Prediction Fails Differently for Black Defendants" table
 	public static PropublicaDataTable racialBiasTable = null;
 	// newRacialBiasTable for additional analysis in part 5. Feel free to uncomment this and run it
-	// public static PropublicaDataTable newRacialBiasTable = null;
+	 public static PropublicaDataTable newRacialBiasTable = null;
 	
     public static void main( String[] args ) {
     	 /**
@@ -30,22 +30,22 @@ public class Main {
     	try {
     		// This calls the tesAdding() method defined below. Feel free to uncomment this and run it
     		// testAdding();
-    		AllPeople allDefendants = new AllPeople();
+    		AllPeople allDefendantsData = new AllPeople();
         	CSVReaderHeaderAware csvReader = new CSVReaderHeaderAware(new FileReader("compas-scores.csv"));
         	ArrayList<String[]> dataReadRows = new ArrayList<String[]>(csvReader.readAll());
         	csvReader.close();	
-    		allDefendants.finalArrayList(dataReadRows);
-    		racialBiasTable = new PropublicaDataTable(allDefendants.falsePositiveWhite(), 
-    												  allDefendants.falsePositiveBlack(), 
-    												  allDefendants.falseNegativeWhite(), 
-    												  allDefendants.falseNegativeBlack());
+    		allDefendantsData.finalArrayList(dataReadRows);
+    		racialBiasTable = new PropublicaDataTable(allDefendantsData.whiteHighNoReoffendRate(), 
+    												  allDefendantsData.blackHighNoReoffendRate(), 
+    												  allDefendantsData.whiteLowReoffendRate(), 
+    												  allDefendantsData.blackLowReoffendRate());
     		System.out.println(racialBiasTable.toString());
     		// Below is the code that sets and prints the table with the values from our custom analysis
     		// Feel free to uncomment this and run it
-    		// newRacialBiasTable = new PropublicaDataTable(allDefendants.newFalsePWhite(), 
-    													 // allDefendants.newFalsePBlack(),
-    													 // allDefendants.newFalseNWhite(), 
-    													 // allDefendants.newFalseNBlack());
+    		// newRacialBiasTable = new PropublicaDataTable(allDefendantsData.newWhiteHighNoReoffend(), 
+    													// allDefendantsData.newBlackHighNoReoffend(),
+    													// allDefendantsData.newWhiteLowReoffend(), 
+    													// allDefendantsData.newBlackLowReoffend());
     		// System.out.println(newRacialBiasTable.toString());
     	} catch (FileNotFoundException exception) {
             // Catch expected FileNotFoundException.

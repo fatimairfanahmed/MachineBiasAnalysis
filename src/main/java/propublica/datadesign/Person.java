@@ -100,7 +100,7 @@ public class Person {
 	 * ^If any of the preconditions other than the first one is violated, an IllegalArgumentException is thrown.
 	 */
     public Person(String[] row) throws Exception, IndexOutOfBoundsException, IllegalArgumentException {
-    		// ensures that twoYearRecid is 0 or 1; throws IllegalArgumentException if not
+    		// ensures that entry in twoYearRecid column is 0 or 1; throws IllegalArgumentException if not
     		if (Integer.parseInt(row[6]) != 1 && Integer.parseInt(row[6]) != 0) {
     			throw new IllegalArgumentException(); 
     		}
